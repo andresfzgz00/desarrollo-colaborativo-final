@@ -16,17 +16,18 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }: PropsWithChildren) {
     const [currentUser, setCurrentUser] = useState<User>()
-    const [users, setUsers] = useState<User[]>([])
+    const [users, setUsers] = useState<User[]>([ new User('andres@gmail.com', 'andreschido') ])
 
     const logIn = (email: string, password: string) => {
         const user = users.find(user => user.email === email && user.password === password)
-        if (user) setCurrentUser(user)
+        if (user) return setCurrentUser(user)
+        console.log('User not found')
     }
 
     const addUser = (newUser: User) => {
         const {email, password} = newUser
         const index = users.findIndex(user => user.email === email && user.password === password)
-        if (index !== -1) setUsers(prevState => [...prevState, newUser])
+        if (index !== -1) return setUsers(prevState => [...prevState, newUser])
     }
 
     const value: IAuthContext = {
