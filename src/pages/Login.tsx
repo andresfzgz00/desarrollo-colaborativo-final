@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 
 function Login() {
-  const { logIn } = useAuth()!
+  const { logIn } = useAuth()
 
   const [form, setForm] = useState({email: '', password: ''})
 
@@ -32,6 +32,7 @@ function Login() {
           type="email"
           className="form-control"
           placeholder="Enter email"
+          value={form.email}
         />
       </div>
       <div className="mb-3">
@@ -40,6 +41,7 @@ function Login() {
           type="password"
           className="form-control"
           placeholder="Enter password"
+          value={form.password}
         />
       </div>
       <div className="d-grid">

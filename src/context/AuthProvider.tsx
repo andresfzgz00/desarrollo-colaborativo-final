@@ -1,4 +1,4 @@
-import { createContext, useState, PropsWithChildren, useContext, Context } from 'react'
+import { createContext, useState, useContext } from 'react'
 import User from '../entities/User'
 import Login from '../pages/Login'
 import Routes from '../routes'
@@ -6,17 +6,19 @@ import Routes from '../routes'
 interface IAuthContext {
     currentUser?: User,
     users: User[]
-    logIn: (email: string, password: string) => void
-    addUser: (user: User) => void
+    logIn?: (email: string, password: string) => void
+    addUser?: (user: User) => void
 }
 
-const AuthContext = createContext<IAuthContext | undefined>(undefined)
+const AuthContext = createContext<IAuthContext>({
+    users: []
+})
 
 export const useAuth = () => {
     return useContext(AuthContext)
 }
 
-export function AuthProvider({ children }: PropsWithChildren) {
+export function AuthProvider() {
     const [currentUser, setCurrentUser] = useState<User>()
     const [users, setUsers] = useState<User[]>([ new User('andres@gmail.com', 'andreschido') ])
 

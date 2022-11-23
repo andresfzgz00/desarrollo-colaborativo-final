@@ -4,22 +4,25 @@ import {
   Route,
 } from "react-router-dom";
 import Navbar from "../components/ui/Navbar";
-import Alumnos from "../pages/Alumnos";
-import Calificaciones from "../pages/Calificaciones";
-import Inscripciones from "../pages/Inscripciones";
-import Materias from "../pages/Materias";
+import Students from "../pages/Students";
+import Notes from "../pages/Notes";
+import Inscriptions from "../pages/Inscriptions";
+import Subjects from "../pages/Subjects";
+import { StudentsProvider } from "../context/Studentscontext";
 
 export default function Routes() {
   return (
-    <Router>
-      <Navbar>
-        <Switch>
-          <Route path="/alumnos" element={<Alumnos />} />
-          <Route path="/materias" element={<Materias />} />
-          <Route path="/inscripciones" element={<Inscripciones />} />
-          <Route path="/calificaciones" element={<Calificaciones />} />
-        </Switch>
-      </Navbar>
-    </Router>
+    <StudentsProvider>
+      <Router>
+        <Navbar>
+          <Switch>
+            <Route path="/alumnos" element={<Students />} />
+            <Route path="/materias" element={<Subjects />} />
+            <Route path="/inscripciones" element={<Inscriptions />} />
+            <Route path="/calificaciones" element={<Notes />} />
+          </Switch>
+        </Navbar>
+      </Router>
+    </StudentsProvider>
   );
 }
