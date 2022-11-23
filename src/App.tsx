@@ -1,13 +1,9 @@
-import { AuthProvider } from "./context/AuthProvider";
-import Login from "./pages/Login";
-
+import { AuthProvider, useAuth } from "./context/AuthProvider";
 function App() {
+  const { currentUser } = useAuth() || {};
+  console.log(currentUser)
   return (
-    <AuthProvider>
-      <div className="mt-5">
-        <Login />
-      </div>
-    </AuthProvider>
+    <AuthProvider />
   );
 }
 

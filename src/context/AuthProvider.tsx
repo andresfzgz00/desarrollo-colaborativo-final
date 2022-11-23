@@ -1,5 +1,7 @@
-import { createContext, useState, PropsWithChildren, useContext } from 'react'
+import { createContext, useState, PropsWithChildren, useContext, Context } from 'react'
 import User from '../entities/User'
+import Login from '../pages/Login'
+import Routes from '../routes'
 
 interface IAuthContext {
     currentUser?: User,
@@ -20,6 +22,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
     const logIn = (email: string, password: string) => {
         const user = users.find(user => user.email === email && user.password === password)
+        console.log(currentUser)
         if (user) return setCurrentUser(user)
         console.log('User not found')
     }
@@ -30,7 +33,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
         if (index !== -1) return setUsers(prevState => [...prevState, newUser])
     }
 
-    const value: IAuthContext = {
+    const value = {
         currentUser,
         users,
         logIn,
@@ -38,8 +41,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
     }
 
     return (
-        <AuthContext.Provider value={value}>
-            {children}
+        <AuthContext.Provider value={value} >
+           <div>{currentUser ? <Routes /> : <Login />}</div>
         </AuthContext.Provider>
     )
 }

@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 
 function Login() {
-  const { logIn } = useAuth()!;
+  const { logIn } = useAuth()!
 
   const [form, setForm] = useState({email: '', password: ''})
 
