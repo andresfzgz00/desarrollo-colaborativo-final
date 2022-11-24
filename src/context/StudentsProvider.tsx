@@ -12,7 +12,8 @@ interface IStudentsContext {
   addStudent?: (name: string, lastName: string) => void;
   selectStudent?: (id: string) => void;
   deleteStudent?: (id: string) => void;
-  updateStudent?: (toBeUpdatedStudent: Student) => void
+  updateStudent?: (toBeUpdatedStudent: Student) => void;
+  resetStudent?: () => void;
 }
 
 const StudentsContext = createContext<IStudentsContext>({
@@ -49,6 +50,11 @@ export function StudentsProvider({ children }: PropsWithChildren) {
         auxState[index] = { ...prevState[index], ...toBeUpdatedStudent }
         return auxState
     })
+    resetStudent()
+  }
+
+  const resetStudent = () => {
+    setStudent(undefined)
   }
 
   const value = {
@@ -57,7 +63,8 @@ export function StudentsProvider({ children }: PropsWithChildren) {
     addStudent,
     selectStudent,
     deleteStudent,
-    updateStudent
+    updateStudent,
+    resetStudent
   };
 
   return (

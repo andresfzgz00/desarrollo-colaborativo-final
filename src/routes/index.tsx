@@ -8,7 +8,7 @@ import Students from "../pages/Students";
 import Notes from "../pages/Notes";
 import Inscriptions from "../pages/Inscriptions";
 import Subjects from "../pages/Subjects";
-import { StudentsProvider } from "../context/Studentscontext";
+import { StudentsProvider } from "../context/StudentsProvider";
 
 export default function Routes() {
   return (
