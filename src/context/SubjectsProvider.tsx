@@ -4,6 +4,8 @@ import {
     PropsWithChildren,
     useContext,
   } from "react";
+import Note from "../entities/Note";
+import Student from "../entities/Student";
 import Subject from "../entities/Subject";
   
   interface ISubjectsContext {
@@ -14,6 +16,8 @@ import Subject from "../entities/Subject";
     deleteSubject?: (id: string) => void;
     updateSubject?: (toBeUpdatedSubject: Subject) => void;
     resetSubject?: () => void;
+    addStudentToSubject?: (student: Student, subjectId: string) => void;
+    updateNote?: (subjectId: string, noteId: string, note: number) => void;
   }
   
   const SubjectsContext = createContext<ISubjectsContext>({
@@ -56,6 +60,25 @@ import Subject from "../entities/Subject";
     const resetSubject = () => {
       setSubject(undefined)
     }
+
+    const addStudentToSubject = (student: Student, subjectId: string) => {
+      const index = subjects.findIndex(currentSubject => currentSubject.id === subjectId)
+      if (index > -1) {
+        setSubjects(prevState => {
+          const aux = [ ...prevState ]
+          aux[index].notes = [ ...aux[index].notes, new Note(student) ]
+          return aux
+        })
+      }
+    }
+
+    const updateNote = (subjectId: string, noteId: string, note: number) => {
+      const auxSubject = subjects.find(currentSubject => currentSubject.id === subjectId)
+      const noteIndex = auxSubject.notes.findIndex(currentNote => currentNote.id === noteId)
+
+      auxSubject.notes[noteIndex] = { ...auxSubject.notes[noteIndex], note }
+      updateSubject(auxSubject)
+    }
   
     const value = {
       subjects,
@@ -64,7 +87,9 @@ import Subject from "../entities/Subject";
       selectSubject,
       deleteSubject,
       updateSubject,
-      resetSubject
+      resetSubject,
+      addStudentToSubject,
+      updateNote
     };
   
     return (

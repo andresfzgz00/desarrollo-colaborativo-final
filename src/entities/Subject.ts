@@ -1,8 +1,8 @@
 import ClassWithID from "./ClassWithID";
-import Student from "./Student";
+import Note from "./Note";
 
 export default class Subject extends ClassWithID {
-    public students: Student[] = []
+    public notes: Note[] = []
     constructor(
         public name: string,
     ) {

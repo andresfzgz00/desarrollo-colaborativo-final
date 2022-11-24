@@ -26,11 +26,6 @@ export default function Navbar({ children }: PropsWithChildren) {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/inscripciones" className={isLinkActive}>
-                  Inscripción de Alumnos
-                </NavLink>
-              </li>
-              <li className="nav-item">
                 <NavLink to="/calificaciones" className={isLinkActive}>
                   Captura de calificaciones
                 </NavLink>
