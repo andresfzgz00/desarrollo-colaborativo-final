@@ -13,7 +13,7 @@ import Subject from "../entities/Subject";
     selectSubject?: (id: string) => void;
     deleteSubject?: (id: string) => void;
     updateSubject?: (toBeUpdatedSubject: Subject) => void;
-    resetStudent?: () => void;
+    resetSubject?: () => void;
   }
   
   const SubjectsContext = createContext<ISubjectsContext>({

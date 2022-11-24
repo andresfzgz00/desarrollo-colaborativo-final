@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react";
 import StudentList from "../components/StudentsPage/StudentList";
-import StudentsForm from "../components/StudentsPage/StudentsForm";
+import StudentForm from "../components/StudentsPage/StudentForm";
 import { useStudents } from "../context/StudentsProvider";
 
-export default function Alumnos() {
+export default function Students() {
   const { addStudent } = useStudents();
   const [form, setForm] = useState({ name: "", lastName: "" });
 
@@ -27,7 +27,7 @@ export default function Alumnos() {
 
   return (
     <>
-      <StudentsForm
+      <StudentForm
         formChangeHandler={formChangeHandler}
         formState={form}
         formSubmitHandler={formSubmitHandler}

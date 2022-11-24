@@ -11,7 +11,7 @@ interface Props {
   formChangeHandler: (event: FormEvent<HTMLFormElement>) => void;
 }
 
-export default function StudentsForm({
+export default function StudentForm({
   formState,
   formSubmitHandler,
   formChangeHandler,
